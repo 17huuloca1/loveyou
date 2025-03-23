@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Lời tỏ tình dễ thương ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+        body {
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            background: radial-gradient(circle, #0f0c29, #302b63, #24243e);
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative;
+            color: white;
+        }
+        .container {
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+            max-width: 90%;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            color: #00ffff;
+            font-size: 2em;
+            text-shadow: 0 0 10px #00ffff;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+            border-radius: 10px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+            font-weight: bold;
+        }
+        .yes {
+            background-color: #00ffcc;
+            color: black;
+        }
+        .no {
+            background-color: #ff0040;
+            color: white;
+        }
+        .image-container img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .fireworks {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            top: 0;
+            left: 0;
+            background: url('https://media.giphy.com/media/l0HlBO7eyXzSZkJri/giphy.gif') center/cover no-repeat;
+            display: none;
+        }
+    </style>
+    <script>
+        let questions = [
+            { text: "Nếu anh là món ăn, em có muốn nếm thử không? 🍔", img: "https://i.imgur.com/3Q4pUKJ.jpeg" },
+            { text: "Nếu anh là bộ phim, em có muốn xem suốt đời không? 🎬", img: "https://i.imgur.com/1J7U3GQ.jpeg" },
+            { text: "Nếu anh là bài hát, em có muốn nghe mãi không? 🎶", img: "https://i.imgur.com/1p8JQff.jpeg" },
+            { text: "Nếu anh là giấc mơ, em có muốn mơ thấy anh mỗi đêm không? 🌙", img: "https://i.imgur.com/6XZ4n6B.jpeg" },
+            { text: "Vậy... Em có muốn làm người yêu anh không? ❤️", img: "https://i.imgur.com/yJZb1fz.jpeg", last: true }
+        ];
+        let index = 0;
+
+        function changeQuestion() {
+            if (index < questions.length) {
+                document.getElementById("question").innerHTML = questions[index].text;
+                document.getElementById("question-image").src = questions[index].img;
+                document.getElementById("question-image").onerror = function() {
+                    this.src = "https://via.placeholder.com/300x200?text=No+Image";
+                };
+                if (questions[index].last) {
+                    document.getElementById("no").style.display = "none";
+                }
+                index++;
+            }
+            if (index === questions.length) {
+                document.getElementById("yes").onclick = sayYes;
+            }
+        }
+
+        function sayYes() {
+            document.getElementById("question").innerHTML = "Em đồng ý rồi nha ❤️";
+            document.getElementById("question-image").src = "https://i.imgur.com/yJZb1fz.jpeg";
+            document.getElementById("buttons").style.display = "none";
+            document.getElementById("fireworks").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("fireworks").style.display = "none";
+            }, 4000);
+        }
+    </script>
+</head>
+<body onload="changeQuestion()">
+    <div class="fireworks" id="fireworks"></div>
+    <div class="container">
+        <h1 id="question"></h1>
+        <div class="image-container">
+            <img id="question-image" src="" alt="Hình ảnh minh họa">
+        </div>
+        <div id="buttons">
+            <button class="btn yes" id="yes" onclick="changeQuestion()">Có ❤️</button>
+            <button class="btn no" id="no" onclick="changeQuestion()">Không 😢</button>
+        </div>
+    </div>
+</body>
+</html>
